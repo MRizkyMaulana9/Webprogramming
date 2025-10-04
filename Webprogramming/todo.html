@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Personal To-Do List</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f0f4f8;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 50px;
+      }
+
+      h1 {
+        color: #333;
+      }
+
+      .todo-container {
+        background: #fff;
+        padding: 20px 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        width: 350px;
+      }
+
+      input[type="text"] {
+        width: 70%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+      }
+
+      button {
+        padding: 10px 15px;
+        margin-top: 10px;
+        margin-left: 5px;
+        border: none;
+        border-radius: 6px;
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+        margin-top: 20px;
+      }
+
+      li {
+        background: #f9f9f9;
+        margin: 8px 0;
+        padding: 10px;
+        border-radius: 6px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      li.completed span {
+        text-decoration: line-through;
+        color: green;
+      }
+
+      .btn-complete {
+        background-color: #28a745;
+      }
+
+      .btn-complete:hover {
+        background-color: #1e7e34;
+      }
+
+      .btn-delete {
+        background-color: #dc3545;
+      }
+
+      .btn-delete:hover {
+        background-color: #a71d2a;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>My To-Do List</h1>
+    <div class="todo-container">
+      <input type="text" id="taskInput" placeholder="Enter a new task..." />
+      <button id="addTaskBtn">Add Task</button>
+
+      <ul id="taskList"></ul>
+    </div>
+
+    <script>
+      const addTaskBtn = document.getElementById("addTaskBtn");
+      const taskInput = document.getElementById("taskInput");
+      const taskList = document.getElementById("taskList");
+
+      // Fungsi menambah task
+      addTaskBtn.addEventListener("click", function () {
+        const taskText = taskInput.value.trim();
+
+        if (taskText === "") {
+          alert("Please enter a task!");
+          return;
+        }
+
+        // Buat elemen li
+        const li = document.createElement("li");
+
+        const span = document.createElement("span");
+        span.textContent = taskText;
+
+        const completeBtn = document.createElement("button");
+        completeBtn.textContent = "Complete";
+        completeBtn.classList.add("btn-complete");
+
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "Delete";
+        deleteBtn.classList.add("btn-delete");
+
+        // Tambahkan event ke tombol Complete
+        completeBtn.addEventListener("click", function () {
+          li.classList.toggle("completed");
+        });
+
+        // Tambahkan event ke tombol Delete
+        deleteBtn.addEventListener("click", function () {
+          taskList.removeChild(li);
+        });
+
+        // Gabungkan semuanya
+        li.appendChild(span);
+        li.appendChild(completeBtn);
+        li.appendChild(deleteBtn);
+        taskList.appendChild(li);
+
+        // Kosongkan input
+        taskInput.value = "";
+      });
+    </script>
+  </body>
+</html>
