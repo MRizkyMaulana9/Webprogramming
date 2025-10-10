@@ -1,7 +1,8 @@
 <script setup>
-import HelloVue from "./component/HelloVue.vue";
-import Content from "./component/Content.vue";
-import Footer from "./component/Footer.vue";
+//import HelloVue from "./component/HelloVue.vue";
+//import Content from "./component/Content.vue";
+//import Footer from "./component/Footer.vue";
+import Image from "./component/Image.vue";
 </script>
 <template>
   <h1>You did it!</h1>
@@ -14,6 +15,7 @@ import Footer from "./component/Footer.vue";
   <HelloVue />
   <Content />
   <Footer.vue />
+  <Image />
 </template>
 
 <style scoped></style>
